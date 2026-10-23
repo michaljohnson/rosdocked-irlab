@@ -17,6 +17,9 @@ ARG uid
 ARG home
 ARG workspace
 ARG shell
+# icclab_summit_xl source: a fork or branch builds without editing this file
+ARG SUMMIT_XL_REPO=https://github.com/icclab/icclab_summit_xl
+ARG SUMMIT_XL_BRANCH=${ROS_DISTRO}
 
 ################################################################################
 
@@ -75,7 +78,7 @@ RUN /bin/bash -c 'echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc &
 RUN mkdir -p ~/colcon_ws/src && cd ~/colcon_ws && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && \
 cd src && \
 git clone -b jazzy https://github.com/RobotnikAutomation/robotnik_common.git && \
-git clone -b ${ROS_DISTRO} https://github.com/icclab/icclab_summit_xl && \
+git clone -b ${SUMMIT_XL_BRANCH} ${SUMMIT_XL_REPO} && \
 git clone -b ${ROS_DISTRO} https://github.com/icclab/ros2_laser_scan_merger && \
 git clone -b jazzy-devel https://github.com/RobotnikAutomation/robotnik_sensors.git && \
 git clone -b rolling https://github.com/Juancams/ros_astra_camera && \
